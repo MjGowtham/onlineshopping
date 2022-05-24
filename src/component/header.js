@@ -18,7 +18,7 @@ const HeaderComponent = () => {
                     <ul className="nav navbar-nav">
                         <li className="active"><NavLink to="/">Home</NavLink></li>
                         <li><NavLink to="/products">Shop page</NavLink></li>
-                        <li><NavLink to="/singleproduct">Single product</NavLink></li>
+                        <li><NavLink to="/singleproduct/:id">Single product</NavLink></li>
                         <li><NavLink to="/cart">Cart</NavLink></li>
                         <li><NavLink to="/checkout">Checkout</NavLink></li>
                     </ul>

@@ -1,40 +1,58 @@
-import React from "react";
-const SingleProduct = () => {
+import React, { useEffect, useState } from "react";
+import { NavLink, useParams } from "react-router-dom";
+import axios from "axios";
+const SingleProduct = (props) => {
+    const { id } = useParams();
+    const [product, setProduct] = useState({});
+    useEffect(() => {
+        loadProduct();
+    }, [])
+    const loadProduct = () => {
+        const url = "https://shop143.herokuapp.com/telebuy/api/product/" + id;
+        axios.get(url)
+            .then((response) => {
+                console.log(response);
+                setProduct(response.data);
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
     return (
         <div>
-            <div class="product-big-title-area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="product-bit-title text-center">
+            <div className="product-big-title-area">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="product-bit-title text-center">
                                 <h2>Preview</h2>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="single-product-area">
-                <div class="zigzag-bottom"></div>
-                <div class="container">
-                    <div class="row">
+            <div className="single-product-area">
+                <div className="zigzag-bottom"></div>
+                <div className="container">
+                    <div className="row">
 
 
-                        <div class="col-md-12">
-                            <div class="product-content-right">
-                                <div class="product-breadcroumb">
+                        <div className="col-md-12">
+                            <div className="product-content-right">
+                                <div className="product-breadcroumb">
                                     <a href="">Home</a>
                                     <a href="">Category Name</a>
                                     <a href="">Sony Smart TV - 2015</a>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="product-images">
-                                            <div class="product-main-img">
+                                <div className="row">
+                                    <div className="col-sm-6">
+                                        <div className="product-images">
+                                            <div className="product-main-img">
                                                 <img src="img/product-2.jpg" alt="" />
                                             </div>
 
-                                            <div class="product-gallery">
+                                            <div className="product-gallery">
                                                 <img src="img/product-thumb-1.jpg" alt="" />
                                                 <img src="img/product-thumb-2.jpg" alt="" />
                                                 <img src="img/product-thumb-3.jpg" alt="" />
@@ -42,35 +60,35 @@ const SingleProduct = () => {
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-6">
-                                        <div class="product-inner">
-                                            <h2 class="product-name">Sony Smart TV - 2015</h2>
-                                            <div class="product-inner-price">
+                                    <div className="col-sm-6">
+                                        <div className="product-inner">
+                                            <h2 className="product-name">Sony Smart TV - 2015</h2>
+                                            <div className="product-inner-price">
                                                 <ins>$700.00</ins> <del>$100.00</del>
                                             </div>
 
-                                            <form action="" class="cart">
-                                                <div class="quantity">
-                                                    <input type="number" size="4" class="input-text qty text" title="Qty"
+                                            <form action="" className="cart">
+                                                <div className="quantity">
+                                                    <input type="number" size="4" className="input-text qty text" title="Qty"
                                                         value="1" name="quantity" min="1" step="1" />
                                                 </div>
-                                                <button class="add_to_cart_button" type="submit">Add to cart</button>
+                                                <button className="add_to_cart_button" type="submit">Add to cart</button>
                                             </form>
 
-                                            <div class="product-inner-category">
+                                            <div className="product-inner-category">
                                                 <p>Category: <a href="">Summer</a>. Tags: <a href="">awesome</a>, <a
                                                     href="">best</a>, <a href="">sale</a>, <a href="">shoes</a>. </p>
                                             </div>
 
                                             <div role="tabpanel">
-                                                <ul class="product-tab" role="tablist">
-                                                    <li role="presentation" class="active"><a href="#home" aria-controls="home"
+                                                <ul className="product-tab" role="tablist">
+                                                    <li role="presentation" className="active"><a href="#home" aria-controls="home"
                                                         role="tab" data-toggle="tab">Description</a></li>
                                                     <li role="presentation"><a href="#profile" aria-controls="profile"
                                                         role="tab" data-toggle="tab">Reviews</a></li>
                                                 </ul>
-                                                <div class="tab-content">
-                                                    <div role="tabpanel" class="tab-pane fade in active" id="home">
+                                                <div className="tab-content">
+                                                    <div role="tabpanel" className="tab-pane fade in active" id="home">
                                                         <h2>Product Description</h2>
                                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
                                                             tristique, diam in consequat iaculis, est purus iaculis mauris,
@@ -87,22 +105,22 @@ const SingleProduct = () => {
                                                             In malesuada pulvinar neque a consectetur. Nunc aliquam gravida
                                                             purus, non malesuada sem accumsan in. Morbi vel sodales libero.</p>
                                                     </div>
-                                                    <div role="tabpanel" class="tab-pane fade" id="profile">
+                                                    <div role="tabpanel" className="tab-pane fade" id="profile">
                                                         <h2>Reviews</h2>
-                                                        <div class="submit-review">
+                                                        <div className="submit-review">
                                                             <p><label for="name">Name</label> <input name="name" type="text" />
                                                             </p>
                                                             <p><label for="email">Email</label> <input name="email"
                                                                 type="email" /></p>
-                                                            <div class="rating-chooser">
+                                                            <div className="rating-chooser">
                                                                 <p>Your rating</p>
 
-                                                                <div class="rating-wrap-post">
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
+                                                                <div className="rating-wrap-post">
+                                                                    <i className="fa fa-star"></i>
+                                                                    <i className="fa fa-star"></i>
+                                                                    <i className="fa fa-star"></i>
+                                                                    <i className="fa fa-star"></i>
+                                                                    <i className="fa fa-star"></i>
                                                                 </div>
                                                             </div>
                                                             <p><label for="review">Your review</label> <textarea name="review"

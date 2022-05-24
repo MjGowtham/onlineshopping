@@ -1,5 +1,6 @@
 import React from "react";
 import {BrowserRouter,Routes,Route} from "react-router-dom";
+import {Provider}from "react-redux"
 
 import HomePage from "./pages/home";
 import ShopPage from "./pages/shop";
@@ -15,10 +16,14 @@ import "./css/font-awesome.min.css";
 import "./css/style.css";
 import "./css/responsive.css";
 
+import configureStore from "./redux/store/redux_store";
+const reduxstore=configureStore();
+
 
 const App=()=>{
   return(
-     <BrowserRouter>
+    <Provider store={reduxstore}>
+<BrowserRouter>
      <HeaderComponent></HeaderComponent>
      <Routes>
        <Route path="/" element={<HomePage/>}></Route>
@@ -28,6 +33,8 @@ const App=()=>{
        <Route path="checkout" element={<CheckOut/>}></Route>
      </Routes>
      </BrowserRouter>
+    </Provider>
+     
   )
 }
 export default App;
